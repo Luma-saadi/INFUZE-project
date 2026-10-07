@@ -104,4 +104,5 @@ source("06_emissions_model.R")
 source("07_mileage_scenarios.R")
 source("08_workbook.R")        # requires openxlsx
 source("09_figures.R")
-the authors would like to declare that The R code analysis was developed by the author, but DeepSeek and Claude were used as a coding assistant tools. All  code were validated and reviewed by the authors. 
+
+%%%%the authors would like to declare that The R code analysis was developed by the author, but DeepSeek and Claude were used as a coding assistant tools. All  code were validated and reviewed by the authors. 
