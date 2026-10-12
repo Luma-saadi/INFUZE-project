@@ -708,6 +708,33 @@ project_fleet <- function(base_fleet, retirement_rates, fuel_shares,
 # ============================================================================
 # 7. NATCOP targets
 # ============================================================================
+# HOW THE NATCOP TARGETS ARE BUILT
+# ----------------------------------------------------------------------------
+# The annual growth rates used here were obtained from the NATCOP core model
+# for the years 2025-2037. They are:
+#
+#     Year : 2025   2026   2027   2028   2029   2030   2031
+#     g(%) : 1.04   1.00   0.96   0.92   0.89   0.85   0.81
+#
+#     Year : 2032   2033   2034   2035   2036   2037
+#     g(%) : 0.78   0.75   0.71   0.68   0.65   0.62
+#
+# These rates come from the core-model growth factors:
+#     Annual_Growth_Rate = (Growth_Factor - 1) * 100
+#
+# The 2024 fleet number (observed cars, i.e. fleet_2024_base) is used as the
+# BASE, and the growth rates are compounded forward from it to estimate the
+# future fleet number of cars for each year 2025-2037:
+#
+#     Target_Fleet(t) = fleet_2024_base * prod_{y=2025..t}(1 + g_y/100)
+#
+# Equivalently, using the cumulative product in the code:
+#     Cumulative_Growth = cumprod(1 + Annual_Growth_Rate/100)
+#     Target_Fleet      = fleet_2024_base * Cumulative_Growth
+#
+# 2024 is anchored as the base year (Cumulative_Growth[2024] = 1, so
+# Target_Fleet[2024] = fleet_2024_base exactly).
+
 inflow_unique <- inflow_data %>%
   select(Year, Annual_Growth_Rate, Core_Model) %>%
   distinct() %>%
