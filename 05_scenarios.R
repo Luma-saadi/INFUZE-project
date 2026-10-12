@@ -719,7 +719,7 @@ project_fleet <- function(base_fleet, retirement_rates, fuel_shares,
 #     Year : 2032   2033   2034   2035   2036   2037
 #     g(%) : 0.78   0.75   0.71   0.68   0.65   0.62
 #
-# These rates come from the core-model growth factors:
+# These rates come from the NATCOP core-model growth factors:
 #     Annual_Growth_Rate = (Growth_Factor - 1) * 100
 #
 # The 2024 fleet number (observed cars, i.e. fleet_2024_base) is used as the
